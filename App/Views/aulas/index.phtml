@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Aulas</title> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="<?= assets()->css('main.css'); ?>" />
+	<noscript>
+		<link rel="stylesheet" href="<?= assets()->css('noscript.css'); ?>" /></noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
+
+		<!-- Intro -->
+		<div id="intro">
+			<h1>Page Aulas</h1>
+			<p>A free, fully responsive HTML5 + CSS3 site template designed by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
+				and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
+			<ul class="actions">
+				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+			</ul>
+		</div>
+
+		<!-- Header -->
+		<header id="header">
+			<a href="aulas" class="logo">Aulas</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav"> 
+			<ul class="links">
+				<li><a href="/">Home</a></li>
+				<li><a href="dicas">Dicas</a></li>
+				<li class="active"><a href="aulas">Aulas</a></li>
+				<li><a href="novidades">Novidades</a></li>
+				<li><a href="dicionario">Dicionário</a></li>
+				<li><a href="contact">Contato</a></li>
+			</ul>
+			<!-- Inclusão dos ícones -->
+			<?php $this->render('common/nav-icons', ['dados_redes_sociais' => $dados_redes_sociais]) ?>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Featured Post / Destaque -->
+			<article class="post featured">
+				<header class="major">
+					<span class="date mb-4!important"> <?= $dados_aulas_destaque[0]->dt_exibe ?> </span>
+					<h2><a href="#"> <?= $dados_aulas_destaque[0]->titulo ?> </a></h2>
+					<p> <?= $dados_aulas_destaque[0]->chamada ?> </p>
+				</header>
+				<a href="#" class="image main"><img src="<?= assets()->img("pic01.jpg") ?>" alt="" /></a>
+				<ul class="actions special">
+					<li><a href="aulas/<?=$dados_aulas_destaque[0]->id?>" class="button large">Continuar lendo...</a></li> <!-- new -->
+				</ul>
+			</article>
+
+			<!-- Posts -->
+			<section class="posts">
+				<?php foreach ($dados_aulas as $key => $dados) : ?>
+					<article>
+						<header>
+							<span class="date mb-4!important"> <?= $dados->dt_exibe ?> </span>
+							<h2><a href="#"> <?= $dados->titulo ?> </a></h2>
+						</header>
+						<a href="#" class="image fit"><img src="<?= assets()->img("pic02.jpg") ?>" alt="" /></a>
+						<p> <?= $dados->chamada ?> </p>
+						<ul class="actions special">
+							<li><a href="aulas/<?=$dados->id?>" class="button large">Continuar lendo...</a></li> <!-- new -->
+						</ul>
+					</article>
+				<?php endforeach; ?>
+			</section>
+
+			<!-- Footer -->
+			<footer>
+				<div class="pagination">
+					<!--<a href="#" class="previous">Prev</a>-->
+					<a href="#" class="page active">1</a>
+					<a href="#" class="page">2</a>
+					<a href="#" class="page">3</a>
+					<span class="extra">&hellip;</span>
+					<a href="#" class="page">8</a>
+					<a href="#" class="page">9</a>
+					<a href="#" class="page">10</a>
+					<a href="#" class="next">Next</a>
+				</div>
+			</footer>
+
+		</div>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Untitled</li>
+				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="<?= assets()->js("jquery.min.js") ?>"></script>
+	<script src="<?= assets()->js("jquery.scrollex.min.js") ?>"></script>
+	<script src="<?= assets()->js("jquery.scrolly.min.js") ?>"></script>
+	<script src="<?= assets()->js("browser.min.js") ?>"></script>
+	<script src="<?= assets()->js("breakpoints.min.js") ?>"></script>
+	<script src="<?= assets()->js("util.js") ?>"></script>
+	<script src="<?= assets()->js("main.js") ?>"></script>
+</body>
+
+</html>

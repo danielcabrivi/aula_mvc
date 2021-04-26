@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- start: Head -->
+    <?php $this->render('common/head'); ?>
+    <!-- end: Head -->
+
+    <body id="mimin" class="dashboard">
+        <!-- start: Header -->
+        <?php $this->render('common/header'); ?>
+        <!-- end: Header -->
+
+        <div class="container-fluid mimin-wrapper">
+
+            <!-- start: Left Menu -->
+            <?php $this->render('common/leftMenu'); ?>
+            <!-- end: Left Menu -->
+
+            <!-- start: content -->
+            <div id="content">
+                <!-- start: Top Menu -->
+                <?php $this->render('common/topMenu'); ?>
+                <!-- end: Top Menu -->
+                
+                <!-- start: conteúdo central -->
+                Página Configurações
+                <!-- end: conteúdo central -->
+            </div>
+            <!-- end: content -->
+        </div>
+
+        <!-- start: Mobile -->
+        <?php $this->render('common/mobileMenu'); ?>
+        <!-- end: Mobile -->
+
+        <!-- start: Javascript -->
+        <script src="../asset/js/jquery.min.js"></script>
+        <script src="../asset/js/jquery.ui.min.js"></script>
+        <script src="../asset/js/bootstrap.min.js"></script>
+
+
+        <!-- plugins -->
+        <script src="../asset/js/plugins/moment.min.js"></script>
+        <script src="../asset/js/plugins/jquery.nicescroll.js"></script>   
+
+
+        <!-- custom -->
+        <script src="../asset/js/main.js"></script>
+        
+        <!-- end: Javascript -->
+    </body>

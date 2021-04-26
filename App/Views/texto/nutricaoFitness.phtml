@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+    <head>
+        <title>Clínica Núcleo Vivendi</title>
+        <meta name="description" content="" >
+        <meta name="keywords" content="">
+
+        <!-- Inclusão do cabeçalho contendo banner, logotipo, telefone principal e menu -->
+        <?php $this->render('common/head'); ?>
+    </head>
+    <body>
+        <!-- Inclusão do cabeçalho contendo banner, logotipo, telefone principal e menu -->
+        <?php $this->render('common/header'); ?>
+
+        <section id="conteudo" class="clearfix">
+            <div class="centraliza clearfix">
+                <div class="faixa_conteudo clearfix">
+                    <h2 class="titulo">Nutrição & Fitness</h2>
+                    <section class="conteudo_destaque">
+                        <?php if(count($dados_nutricaoFitness) > 0):?>
+                        <?php foreach ($dados_nutricaoFitness as $key => $dados):?>
+                        <?php if (($key+3)%3 == 0): ?>
+                        <ul class="lst_conteudo_destaque margin_b30 clearfix">
+                        <?php endif; ?>
+                            <?php if(($key+1)%3 == 0):?>
+                            <li class="ultimo">
+                            <?php else: ?>
+                            <li>
+                            <?php endif;?>
+                                <h2 class="titulo_nv2"><?=$dados->nm_texto?></h2>
+                                <p class="link_p"><a href="nutricao-e-fitness/<?=$dados->cd_texto?>/<?=$dados->url_texto;?>.html" title="<?=$dados->nm_texto?>"><?=$dados->chamada_texto?></a></p>
+                            </li>
+                        <?php if (($key+1)%3 == 0): ?>
+                        </ul>
+                        <?php endif; ?>
+                        <?php endforeach;?>
+                    <?php else:?>
+                    <p>Nenhum registro encontrado!</p>
+                    <?php endif; ?>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inclusão do rodapé -->
+        <?php $this->render('common/footer'); ?>
+    </body>
+</html>

@@ -1,0 +1,215 @@
+<!doctype html> 
+<html lang="pt-BR" dir="ltr">
+<head>
+    <title>Telegenética - HC/UFMG</title>
+    <meta name="description" content="Telegenética - HC/UFMG" >
+    <meta name="keywords" content="Telegenética - HC/UFMG">
+
+    <!-- Inclusão do head -->
+    <?php $this->render('common/head'); ?>
+</head>
+<body>
+<!-- Inclusão do cabeçalho contendo banner, logotipo, telefone principal e menu -->
+<?php $this->render('common/header', ['dados_configprincipais' => $dados_configprincipais]); ?>
+
+<!-- Slider area -->
+<?php if (count($dados_banner) != 0) : ?>
+<section class="slider_area row m0">
+
+    <div class="slider_inner">
+        <?php foreach ($dados_banner as $key => $value) : ?>
+        <div data-thumb="<?=assets()->img($value->url_img) ?>" data-src="<?=assets()->img($value->url_img) ?>">
+            <div class="camera_caption">
+                <div class="container">
+                    <h5 class=" wow fadeInUp animated"><?= $value->titulo ?></h5>
+                    <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s"><?= $value->subtitulo ?></h3>
+                    <p class=" wow fadeInUp animated" data-wow-delay="0.8s"><?= $value->descricao ?></p>
+                    <a target="_blank" class=" wow fadeInUp animated" data-wow-delay="1s" href="<?= $value->link ?>">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+<!-- End Slider area -->
+
+<!-- Novidades -->
+<section class="about_us_area row">
+    <div class="container">
+        <div class="tittle wow fadeInUp">
+            <h2>Novidades</h2>
+            <h4>Veja as últimas novidades lançadas para você</h4>
+        </div>
+        <div class="row about_row">
+            <?php foreach ($dados_novidades as $key => $value) : ?>
+            <div class="who_we_area col-md-3 col-sm-2">
+                <h4 class="titulo_novidade"><a href="about"><?=$value->titulo?></a> </h4>
+                <p><?=$value->chamada?></p>
+                <br/>
+                <a href="novidades/<?=$value->id?>/" class="link_novidades"><strong>LEIA MAIS >> </strong></a>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<!-- End Novidades Area -->
+
+<!-- Professional Builde -->
+<section class="professional_builder row">
+    <div class="container">
+        <div class="row builder_all">
+            <div class="col-md-6 col-sm-6 builder">
+                <i class="fa fa-id-card" aria-hidden="true"></i>
+                <h4>Profissionais de Saúde</h4>
+                <p>Você, profissional de saúde, ajude o seu paciente com doença genética a receber a continuidade dos cuidados em saúde.  Faça o seu login e encontre protocolos clínicos para diversas doenças raras, desenvolvidos por médicos geneticistas.</p>
+                <br><p align="center"><a href="profissionais/index" class="button_all">Acesse</a></p>
+            </div>
+            <div class="col-md-6 col-sm-6 builder">
+                <i class="fa fa-group" aria-hidden="true"></i>
+                <h4>Pacientes e Familiares</h4>
+                <p>Encontre textos sobre doenças raras, links para endereços de associações de pacientes com doenças raras, além de eventos de seu interesse e da sua família. Por meio deste conteúdo, você estará apto a aumentar seu conhecimento sobre as doenças raras de causa genética.</p>
+                <br><p align="center"><a href="familia/index" class="button_all">Acesse</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Professional Builde -->
+
+<!-- About Us Area -->
+<section class="about_us_area row">
+    <div class="container">
+        <div class="tittle wow fadeInUp">
+            <h2><?= $dados_about[0]->titulo ?></h2>
+            <h4><?= $dados_about[0]->legenda ?></h4>
+        </div>
+        <div class="row about_row">
+            <div class="who_we_area col-md-7 col-sm-6">
+                <div class="subtittle">
+                    <h2><?= $dados_about[0]->nome ?></h2>
+                </div>
+                <p><?= $dados_about[0]->descricao ?></p>
+                <a href="about" class="button_all">Conheça mais</a>
+            </div>
+            <div class="col-md-5 col-sm-6 about_client">
+                <img src="<?=assets()->img($dados_about[0]->url_img) ?>" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About Us Area -->
+
+<!-- What ew offer Area -->
+<section class="what_we_area row">
+    <div class="container">
+        <div class="tittle wow fadeInUp">
+            <h2>DOENÇAS RARAS</h2>
+            <h4>Conheça um pouco sobre as doenças raras!</h4>
+        </div>
+        <div class="row construction_iner">
+            <?php foreach ($dados_doencasraras as $key => $value) : ?>
+            <div class="col-md-4 col-sm-6 construction">
+                <div class="cns-img">
+                    <a href="#"><img src="<?=assets()->img($value->url_img_destaque) ?>" alt=""></a>
+                </div>
+                <div class="cns-content">
+                    <i class="fa <?=$value->icone?>" aria-hidden="true"></i>
+                    <a href="doencas"><?=$value->titulo?></a>
+                    <p><?=$value->chamada?></p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<!-- End What ew offer Area -->
+
+<!-- Our Features Area -->
+<section class="our_feature_area">
+    <div class="container">
+        <div class="tittle wow fadeInUp">
+            <h2>Telegenética</h2>
+        </div>
+        <div class="feature_row row">
+            <div class="col-md-6 feature_img">
+                <img src="<?=assets()->img('comunicacao.jpg') ?>" alt="">
+            </div>
+            <div class="col-md-6 feature_content">
+                <div class="subtittle">
+                    <h2>OBJETIVOS</h2>
+                    <h5>Conheça os principais objetivos da TelegenéticaMG</h5>
+                </div>
+                <?php foreach ($dados_objetivosaboutus as $key => $value): ?>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <i class="fa <?=$value->icone?>" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <?php if ($value->titulo != null) : ?>
+                            <a href="#"><?=$value->titulo?></a>
+                        <?php endif; ?>
+                        <p style="padding-top: 0"><?=$value->descricao?></p>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <a href="telegenetica" class="button_all center-block">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Our Features Area -->
+
+<!-- Our Team Area -->
+<section class="our_team_area">
+    <div class="container">
+        <div class="tittle wow fadeInUp">
+            <h2 style="color: #fff;">Equipe</h2>
+
+        </div>
+        <div class="row team_row">
+            <div class="col-md-3 col-sm-6 wow fadeInUp">
+                <div class="team_membar">
+
+                </div>
+            </div>
+            <?php foreach ($dados_equipe as $key => $value) : ?>
+            <div class="col-md-3 col-sm-6 wow fadeInUp">
+                <div class="team_membar">
+                    <img src="<?=assets()->img($value->url_img) ?>" alt="">
+                    <div class="team_content">
+                        <a style="padding: 0 5px 0 5px;" target="_blank" href="<?=$value->link?>" class="name"><?=$value->nome?></a>
+                        <h6 style="padding: 0 5px 0 5px;"><?=$value->legenda?></h6>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<!-- End Our Team Area -->
+
+<!-- Our Partners Area -->
+<?php if (count($dados_parceiros) != 0): ?>
+<section class="our_partners_area">
+    <div class="container">
+        <div class="tittle wow fadeInUp">
+            <h2>Nossos Parceiros</h2>
+        </div>
+        <div class="partners">
+            <?php foreach ($dados_parceiros as $key => $value) :?>
+                <div class="item"><a href="<?=$value->link?>" title="<?=$value->nome?>"> <img src="<?=assets()->img($value->url_img) ?>" alt="<?=$value->nome?>"></a></div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+<!-- End Our Partners Area -->
+
+<!-- Inclusão do rodapé -->
+
+<?php $this->render('common/footer', ['dados_sitesrelacionados' => $dados_sitesrelacionados, 'dados_configprincipais' => $dados_configprincipais]); ?>
+
+</body>
+</html>

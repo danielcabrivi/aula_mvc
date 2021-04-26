@@ -1,0 +1,220 @@
+<?php
+
+if(false) {
+    require_once 'gapi.class.php';
+    define('GA_PROFILE_ID', '94865230');
+
+    $dt_inicio_anual = date('Y-m-01', strtotime('-11 month'));
+    $dt_inicio_geral = '2014-12-01';
+    $dt_inicio_mensal = date('Y-m-d', strtotime('-30 day'));
+    $dt_hoje = date('Y-m-d', strtotime('-0 day'));
+    $dados_gapi_anual = null;
+    $total_gapi_anual = null;
+    $total_gapi_mensal = null;
+    $total_gapi_geral = null;
+
+    try {
+        $ga = new gapi("webmaster@nucleovivendi-1301.iam.gserviceaccount.com", "nucleovivendi-8274fa04cfcb.p12");
+
+        $dados_gapi_anual = $ga->requestReportData(GA_PROFILE_ID, array('month', 'year'), array('pageviews', 'visits'), 'month', null, $dt_inicio_anual, $dt_hoje);
+        $total_gapi_anual = $ga->getPageviews();
+
+        $ga->requestReportData(GA_PROFILE_ID, 'day', array('pageviews', 'visits'), 'day', null, $dt_inicio_mensal, $dt_hoje);
+        $total_gapi_mensal = $ga->getPageviews();
+
+        $ga->requestReportData(GA_PROFILE_ID, 'month', array('pageviews', 'visits'), 'month', null, $dt_inicio_geral, $dt_hoje);
+        $total_gapi_geral = $ga->getPageviews();
+    } catch (Exception $ex) {
+        echo "<div class='col-md-9' style='margin: 90px 0 10px 250px'>
+                          <div class='alert col-md-12 col-sm-12 alert-icon alert-danger alert-dismissible fade in' role='alert'>
+                            <div class='col-md-2 col-sm-2 icon-wrapper text-center'>
+                              <span class='fa fa-flash fa-2x'></span></div>
+                              <div class='col-md-10 col-sm-10'>
+                                <p><strong>Erro!</strong> Erro ao exibir dados de acessos: Erro: $ex </p>
+                              </div>
+                            </div>
+                          </div>";
+    }
+}
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- start: Head -->
+    <?php $this->render('common/head'); ?>
+    <!-- end: Head -->
+    <body id="mimin" class="dashboard">
+        <!-- start: Header -->
+        <?php $this->render('common/header'); ?>
+        <!-- end: Header --> 
+
+        <div class="container-fluid mimin-wrapper">
+
+            <!-- start: Left Menu -->
+            <?php $this->render('common/leftMenu'); ?>
+            <!-- end: Left Menu -->
+
+            <!-- start: content -->
+            <div id="content">
+                <!-- start: Top Menu -->
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-md-12 col-sm-12">
+                            <h3 class="animated fadeInLeft">Área Administrativa > Início</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Top Menu -->
+
+                <!-- start: conteúdo central -->
+                <!--
+                <div class="col-md-12" style="padding:20px;">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-12 padding-0">
+                                <div class="col-md-4">
+                                    <div class="panel box-v1">
+                                        <div class="panel-heading bg-white border-none">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                                <h4 class="text-left">Total de acessos</h4>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                                <h4>
+                                                    <span class="icon-user icons icon text-right"></span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <h1><?= number_format($total_gapi_geral, 0, '', '.') ?></h1>
+                                            <p>Visualizações de página</p>
+                                            <hr/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel box-v1">
+                                        <div class="panel-heading bg-white border-none">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                                <h4 class="text-left">Últimos 12 meses</h4>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                                <h4>
+                                                    <span class="icon-user icons icon text-right"></span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <h1><?= number_format($total_gapi_anual, 0, '', '.') ?></h1>
+                                            <p>Visualizações de página</p>
+                                            <hr/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel box-v1">
+                                        <div class="panel-heading bg-white border-none">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                                <h4 class="text-left">Últimos 30 dias</h4>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                                <h4>
+                                                    <span class="icon-user icons icon text-right"></span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <h1><?= number_format($total_gapi_mensal, 0, '', '.') ?></h1>
+                                            <p>Visualizações de página</p>
+                                            <hr/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" >
+                        <div class="panel">
+                            <div class="panel-heading-white panel-heading">
+                                <h4>Visualizações de páginas dos últimos 12 meses</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <canvas class="line-chart" width="3" height="1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- end: conteúdo central -->
+            </div>
+            <!-- end: content -->
+        </div>
+
+        <!-- start: Mobile -->
+        <?php $this->render('common/mobileMenu'); ?>
+        <!-- end: Mobile -->
+
+        <!-- start: Javascript -->
+        <script src="<?=assets()->js('jquery.min.js');?>"></script>
+        <script src="<?=assets()->js('jquery.ui.min.js');?>"></script>
+        <script src="<?=assets()->js('bootstrap.min.js');?>"></script>
+
+        <!-- plugins -->
+        <script src="<?=assets()->js('plugins/moment.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/chart.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/jquery.nicescroll.js');?>"></script>
+
+        <!-- custom -->
+        <script src="<?=assets()->js('main.js');?>"></script>
+        <script type="text/javascript">
+            (function (jQuery) {
+
+                var lineChartData = {
+                    labels: [
+                        "Jan/<?= $dados_gapi_anual[0]->getYear() ?>",
+                        "Fev/<?= $dados_gapi_anual[1]->getYear() ?>",
+                        "Mar/<?= $dados_gapi_anual[2]->getYear() ?>",
+                        "Abr/<?= $dados_gapi_anual[3]->getYear() ?>",
+                        "Maio/<?= $dados_gapi_anual[4]->getYear() ?>",
+                        "Jun/<?= $dados_gapi_anual[5]->getYear() ?>",
+                        "Jul/<?= $dados_gapi_anual[6]->getYear() ?>",
+                        "Ago/<?= $dados_gapi_anual[7]->getYear() ?>",
+                        "Set/<?= $dados_gapi_anual[8]->getYear() ?>",
+                        "Out/<?= $dados_gapi_anual[9]->getYear() ?>",
+                        "Nov/<?= $dados_gapi_anual[10]->getYear() ?>",
+                        "Dez/<?= $dados_gapi_anual[11]->getYear() ?>"],
+                    datasets: [
+                        {
+                            label: "Acessos: Último Ano",
+                            fillColor: "rgba(21,113,186,0.5)",
+                            strokeColor: "rgba(151,187,205,1)",
+                            pointColor: "rgba(151,187,205,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(151,187,205,1)",
+                            data: [<?php
+        foreach ($dados_gapi_anual as $key => $dados) {
+            if ($key == 11)
+                echo $dados->getPageviews();
+            else
+                echo $dados->getPageviews() . ',';
+        }
+        ?>]
+                        }
+                    ]
+                };
+
+                window.onload = function () {
+                    var ctx3 = $(".line-chart")[0].getContext("2d");
+                    window.myLine = new Chart(ctx3).Line(lineChartData, {
+                        responsive: true,
+                        showTooltips: true
+                    });
+                };
+            })(jQuery);
+        </script>
+
+        <!-- end: Javascript -->
+    </body>
+</html>

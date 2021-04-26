@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- start: Head -->
+    <?php $this->render('common/head'); ?> 
+    <!-- end: Head -->
+
+    <body id="mimin" class="dashboard">
+        <!-- start: Header -->
+        <?php $this->render('common/header'); ?>
+        <!-- end: Header --> 
+
+        <div class="container-fluid mimin-wrapper">
+
+            <!-- start: Left Menu -->
+            <?php $this->render('common/leftMenu'); ?>
+            <!-- end: Left Menu -->
+
+            <!-- start: content -->
+            <div id="content">
+                <!-- start: Top Menu -->
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-md-12 col-sm-12">
+                            <?php if ($dados_aulas): ?> 
+                                <h3 class="animated fadeInLeft">Área Administrativa > Aulas > Alterar</h3>
+                            <?php else: ?>
+                                <h3 class="animated fadeInLeft">Área Administrativa > Aulas > Cadastrar</h3>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Top Menu -->
+
+                <!-- start: conteúdo central -->
+                <div class="form-element">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12">
+                            <div class="panel form-element-padding">
+                                <div id="msgformulario" class="alert alert-primary" role="alert">* Campos Obrigatórios!</div>
+                                <div class="panel-heading">
+                                    <?php if ($dados_aulas): ?>
+                                        <h4>Aulas > Alterar</h4>
+                                    <?php else: ?>
+                                        <h4>Aulas > Novo</h4>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="panel-body" style="padding-bottom:30px;">
+                                    <div class="col-md-12">
+                                        <form class="cmxform" name="frmCadAulas" method="POST" action="<?= url()->route('aulas.salvar'); ?>">
+                                            <?php if ($dados_aulas): ?>
+                                                <input type="hidden" name="id" value="<?= $dados_aulas->id; ?>">   
+                                            <?php endif; ?>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label id="lbl_titulo" class="col-sm-2 control-label text-right">Título*</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->titulo : '' ?>" name="titulo" required aria-required="true" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label id="lbl_chamada" class="col-sm-2 control-label text-right">Chamada*</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->chamada : '' ?>" name="chamada" required aria-required="true" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12"><label class="col-sm-2 control-label text-right">Texto</label>
+                                                <div class="panel-body col-sm-10">
+                                                    <div id="summernote"></div>
+                                                    <textarea style="display:none" name="conteudo" id="conteudo"><?= $dados_aulas ? $dados_aulas->conteudo : '' ?></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Palavras-Chave</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->keywords : '' ?>" name="keywords" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Descrição</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->descricao : '' ?>" name="descricao" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Fonte</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->fonte : '' ?>" name="fonte" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Link da Fonte</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->linkfonte : '' ?>" name="linkfonte" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Data para exibição</label>
+                                                <div class="col-sm-10"><input value="<?= $dados_aulas ? $dados_aulas->dt_exibe : date('Y-m-d') ?>" name="dt_exibe" type="date" class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Ativo</label>
+                                                <div class="col-sm-10">
+                                                    <div class="col-sm-12 padding-0">
+                                                        <?php if ($dados_aulas): ?>
+                                                            <?php if ($dados_aulas->ativo == 1) : ?>
+                                                                <input checked type="checkbox" name="ativo" value="1">
+                                                            <?php else : ?>
+                                                                <input type="checkbox" name="ativo" value="1">
+                                                            <?php endif; ?>
+                                                        <?php else : ?>
+                                                            <input type="checkbox" name="ativo" value="1">
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px"><label class="col-sm-2 control-label text-right">Destaque</label>
+                                                <div class="col-sm-10">
+                                                    <div class="col-sm-12 padding-0">
+                                                        <?php if ($dados_aulas): ?>
+                                                            <?php if ($dados_aulas->destaque == 1) : ?>
+                                                                <input checked type="checkbox" name="destaque" value="1">
+                                                            <?php else : ?>
+                                                                <input type="checkbox" name="destaque" value="1">
+                                                            <?php endif; ?>
+                                                        <?php else : ?>
+                                                            <input type="checkbox" name="destaque" value="1">
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-bottom: 10px">
+                                                <div class="col-md-3" style="margin-top:10px; float: right">
+                                                    <button id="btnEnviar" class="btn ripple btn-raised btn-success">
+                                                        <div>
+                                                            <span class="fa fa-save"></span>
+                                                            <span style="margin-left: 10px;">Salvar</span>
+                                                            <span class="ink animate" style="height: 87px; width: 87px; top: -35.5px; left: -1px;"></span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-3" style="margin-top:10px; float: right">
+                                                    <button id="btnCancelar" onclick="javascript:window.location.href = '<?= url()->route('aulas.index') ?>';" class="btn ripple btn-raised btn-danger">
+                                                        <div>
+                                                            <span class="fa fa-close"></span>
+                                                            <span style="margin-left: 10px;">Cancelar</span>
+                                                            <span class="ink animate" style="height: 87px; width: 87px; top: -35.5px; left: -1px;"></span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: conteúdo central -->
+            </div>
+            <!-- end: content -->
+        </div>
+
+        <!-- start: Mobile -->
+        <?php $this->render('common/mobileMenu'); ?>
+        <!-- end: Mobile -->
+
+        <!-- start: Javascript -->
+        <script src="<?=assets()->js('jquery.min.js');?>"></script>
+        <script src="<?=assets()->js('jquery.ui.min.js');?>"></script>
+        <script src="<?=assets()->js('bootstrap.min.js');?>"></script>
+
+        <script src="<?=assets()->js('plugins/moment.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/jquery.knob.js');?>"></script>
+        <script src="<?=assets()->js('plugins/bootstrap-material-datetimepicker.js');?>"></script>
+        <script src="<?=assets()->js('plugins/jquery.nicescroll.js');?>"></script>
+        <script src="<?=assets()->js('plugins/jquery.mask.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/select2.full.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/nouislider.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/ion.rangeSlider.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/jquery.validate.min.js');?>"></script>
+        <script src="<?=assets()->js('plugins/summernote.min.js');?>"></script>
+
+        <script src="<?=assets()->js('main.js');?>"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $('#summernote').summernote({
+                    height: 400,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['picture', ['picture']],
+                        ['video', ['video']]
+                    ]
+                });
+
+                var valor = $("#conteudo").text();
+                $('.note-editable').html(valor);
+            });
+
+            function validacaoF(form) {
+                $('#lbl_titulo').removeClass('alertaFrm');
+                $('#lbl_chamada').removeClass('alertaFrm');
+
+                if (form.titulo.value.replace(/^\s+|\s+$/g, "").length <= 3) {
+                    form.titulo.focus();
+                    $('#msgformulario').html('Título inválido! Informe-o corretamente.');
+                    $('#msgformulario').removeClass('alert-primary');
+                    $('#msgformulario').addClass('alert-danger');
+                    $('#lbl_titulo').addClass('alertaFrm');
+                    return false;
+                } else if (form.chamada.value.replace(/^\s+|\s+$/g, "").length <= 3) {
+                    form.chamada.focus();
+                    $('#msgformulario').html('Chamada inválida! Informe-a corretamente.');
+                    $('#msgformulario').removeClass('alert-primary');
+                    $('#msgformulario').addClass('alert-danger');
+                    $('#lbl_chamada').addClass('alertaFrm');
+                    return false;
+                }
+            }
+
+            function event_btnEnviarClick()
+            {
+                var valor = $('.note-editable').html();
+                $("#conteudo").text(valor);
+
+                if (validacaoF(document.frmCadAulas) != false) {
+                    document.frmCadAulas.submit();
+                } else {
+                    return false;
+                }
+            }
+            $('#btnEnviar').click(event_btnEnviarClick);
+        </script>
+        <!-- end: Javascript -->
+    </body>
+</html>

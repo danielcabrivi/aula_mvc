@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+    <head>
+        <title>Clínica Núcleo Vivendi</title>
+        <meta name="description" content="<?=$dados_texto[0]->descricao_texto?>" >
+        <meta name="keywords" content="<?=$dados_texto[0]->keywords_texto?>">
+
+        <!-- Inclusão do cabeçalho contendo banner, logotipo, telefone principal e menu -->
+        <?php $this->render('common/head'); ?>
+    </head>
+    <body>
+        <!-- Inclusão do cabeçalho contendo banner, logotipo, telefone principal e menu -->
+        <?php $this->render('common/header'); ?>
+
+        <section id="conteudo" class="clearfix">
+            <div class="centraliza clearfix">
+                <div class="faixa_conteudo clearfix">
+                    <h1 class="titulo"><?=$dados_texto[0]->nm_texto?></h1>
+                    <p><?=$dados_texto[0]->txt_texto?></p>
+                    <br><br><p class="link_botao"><a title="Voltar" href="javascript:history.go(-1);"><< Voltar</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inclusão do rodapé -->
+        <?php $this->render('common/footer'); ?>
+    </body>
+</html>

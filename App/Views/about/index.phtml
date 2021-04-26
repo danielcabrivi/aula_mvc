@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+<head>
+    <title>Telegenética - HC/UFMG</title>
+    <meta name="description" content="Telegenética - HC/UFMG" >
+    <meta name="keywords" content="Telegenética - HC/UFMG">
+
+    <!-- Inclusão do head -->
+    <?php $this->render('common/head'); ?>
+</head>
+<body>
+<!-- Inclusão do cabeçalho contendo banner, logotipo, telefone principal e menu -->
+<?php $this->render('common/header', ['dados_configprincipais' => $dados_configprincipais]); ?>
+
+        <!-- Banner area -->
+        <section class="banner_area" data-stellar-background-ratio="0.5">
+            <h2>Quem Somos</h2>
+            <ol class="breadcrumb">
+                <li><a href="index">Home</a></li>
+                <li><a href="about" class="active">Quem Somos</a></li>
+            </ol>
+        </section>
+        <!-- End Banner area -->
+
+        <!-- About Us Area -->
+        <section class="about_us_area row">
+            <div class="container">
+                <div class="tittle wow fadeInUp">
+                    <h2>QUEM SOMOS</h2>
+                    <h4><?= $dados_about[0]->legenda ?></h4>
+                </div>
+                <div class="row about_row">
+                    <div class="col-md-5 col-sm-6 about_client about_pages_client">
+                        <img src="<?=assets()->img($dados_about[0]->url_img) ?>" alt="">
+                    </div>
+                    <div class="who_we_area col-md-7 col-sm-6">
+                        <div class="subtittle">
+                            <h2><?= $dados_about[0]->nome ?></h2>
+                        </div>
+                        <p><?= $dados_about[0]->conteudo ?></p>
+                    </div>
+                </div>
+                <div class="row about_row" style="padding: 70px 15px 0 15px">
+                    <div class="subtittle">
+                        <h2>Membros do Serviço Especial de Genética Médica do HC/UFMG</h2>
+                    </div>
+                    <?php foreach ($dados_equipe_geral as $key => $value): ?>
+                        <div class="col-md-6 equipe_geral">
+                            <div class="equipe_geral_img"><img alt="<?=$value->nome?>" src="<?=assets()->img($value->url_img)?>" \> </div>
+                            <div class="equipe_geral_desc">
+                                <a target="_blank" href="<?=$value->link?>" class="name"><?=$value->nome?></a>
+                                <p class="legenda"><?=$value->legenda?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+        <!-- End About Us Area -->
+
+<!-- Inclusão do rodapé -->
+<?php $this->render('common/footer', ['dados_sitesrelacionados' => $dados_sitesrelacionados, 'dados_configprincipais' => $dados_configprincipais]); ?>
+
+</body>
+</html>

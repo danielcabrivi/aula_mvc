@@ -1,0 +1,59 @@
+<?php
+session()->put('_pag_login', true);
+if (session()->get('_status_logout')){
+    session()->put('_msg_login', 'Logout efetuado com sucesso!');
+    session()->forget('_status_logout');
+}elseif(session()->get('_erro_login')){
+    session()->put('_msg_login', 'Usuário ou senha inválidos!');
+}else{
+    session()->put('_msg_login', 'Entre com seu login e senha!');
+}    
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- start: Head -->
+    <?php $this->render('common/head'); ?>
+    <!-- end: Head -->
+
+    <body id="mimin" class="dashboard form-signin-wrapper">
+        <div class="container">
+            <form class="form-signin" action="/admin0902/login.validar" method="POST">
+                <div class="panel periodic-login">
+                    <span class="atomic-number"><?= date('d/m/Y') ?></span>
+                    <div class="panel-body text-center">
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            <input name="login_user" type="text" class="form-text" required>
+                            <span class="bar"></span>
+                            <label>Login</label>
+                        </div>
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            <input name="login_pass" type="password" class="form-text" required>
+                            <span class="bar"></span>
+                            <label>Senha</label>
+                        </div>
+                        <input type="submit" class="btn col-md-12" value="Entrar"/>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <!-- end: Content -->
+        <!-- start: Javascript -->
+        <script src="asset/js/jquery.min.js"></script>
+        <script src="asset/js/jquery.ui.min.js"></script>
+        <script src="asset/js/bootstrap.min.js"></script>
+
+        <script src="asset/js/plugins/moment.min.js"></script>
+        <script src="asset/js/plugins/icheck.min.js"></script>
+
+        <!-- custom -->
+        <script src="asset/js/main.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+            });
+        </script>
+        <!-- end: Javascript -->
+    </body>
+</html>

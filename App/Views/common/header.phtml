@@ -1,0 +1,67 @@
+<?php session()->put('_url_origem', $_SERVER["REQUEST_URI"]); ?>
+    <!-- Top Header_Area -->
+    <section class="top_header_area">
+        <div class="container">
+            <ul class="nav navbar-nav top_nav">
+                <li><a href="#"><i class="fa fa-phone"></i><?=$dados_configprincipais[0]->telefone1?></a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i><?=$dados_configprincipais[0]->email_principal?></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i><?=$dados_configprincipais[0]->instagram?></a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- End Top Header_Area -->
+
+    <!-- Header_Area -->
+    <nav class="navbar navbar-default header_aera" id="main_navbar">
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="col-md-3 p0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#min_navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index" style="height: 100px; padding-top: 15px"><img src="<?=assets()->img('logo.png')?>" alt=""></a>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-9 p0">
+                <div class="collapse navbar-collapse" id="min_navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index">Home</a></li>
+                        <li><a href="about">Quem somos</a></li>
+                        <li><a href="genetica">A genética médica</a></li>
+                        <li><a href="doencas">Doenças Raras</a></li>
+                        <li><a href="telegenetica">Telegenética</a></li>
+                        <li><a href="novidades">Novidades</a></li>
+                        <?php if (session()->get('_login_status_general')): ?>
+                            <li class="dropdown submenu">
+                                <a style="color: #f03656;" href="#" class="dropdown-toggle" data-toggle="dropdown"><?=session()->get('_general_user_nome')?></a>
+                                <ul class="dropdown-menu other_dropdwn">
+                                    <?php if (session()->get('_pro_user_status')):?>
+                                        <li><a href="profissionais/login.logout">Logout (Sair)</a></li>
+                                    <?php elseif (session()->get('_pac_user_status')):?>
+                                        <li><a href="familia/login.logout">Logout (Sair)</a></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </li>
+                        <?php else: ?>
+                            <li class="dropdown submenu">
+                                <a style="color: #f03656;" href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
+                                <ul class="dropdown-menu other_dropdwn">
+                                    <li><a href="familia/index">Público em Geral</a></li>
+                                    <li><a href="profissionais/index">Profisionais de Saúde</a></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </div><!-- /.container -->
+    </nav>
+    <!-- End Header_Area -->
