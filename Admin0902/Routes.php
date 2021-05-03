@@ -21,6 +21,7 @@ return [
     'aulas.imagens' => ['aulas', 'imagens'],
     'aulas.deleteupload' => ['aulas', 'deleteupload'],
     'aulas.excluir' => ['aulas', 'excluir'],
+    'aulas.criarpdfgeral' => ['aulas', 'criarpdfgeral'],
 
     'login.index' => ['login', 'index'],
     'login.validar' => ['login', 'validar'],

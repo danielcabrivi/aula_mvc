@@ -1,4 +1,7 @@
 <?php
+
+namespace Foundation\Pdf;
+
 class HelperPDF{
     private $caminho = "";
     function __construct()
@@ -20,9 +23,9 @@ class HelperPDF{
         date_default_timezone_set('America/Sao_Paulo');
         $dtAgora = date("d.m.Y_H.i.s");
 
-        require_once(dirname(__FILE__)."/mpdf/mpdf.php");
+        include_once(dirname(__FILE__)."/mpdf/mpdf.php");
 
-        $mpdf=new mPDF('c','A4','','',20,20,20,20,10,10);
+        $mpdf = new \mPDF('c','A4','','',20,20,20,20,10,10);
 
         $mpdf->SetDisplayMode('fullpage');
 

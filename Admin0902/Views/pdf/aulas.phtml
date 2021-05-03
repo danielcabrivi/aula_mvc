@@ -1,0 +1,58 @@
+<?php
+if(count($dados_aulas) > 0) {
+    ?>
+    <div id="conteudorelatorio">
+        <table id="tbltitulo" cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td><p class="titulorelatorio">AULAS GERAIS<p></p></td>
+
+            </tr>
+        </table>
+
+        <table id="tbldados">
+            <?php foreach ($dados_aulas as $dados): ?>
+            <tr>
+                <td style="width: 30%"><strong>ID:</strong><br><?=$dados->id?></td>
+                <td style="width: 70%"><strong>Título:</strong><br><?=$dados->titulo?></td>
+                <td ><strong>Data:</strong><br><?=$dados->dt_cadastro?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+
+    <style>
+        #tbldados, #tblidentificacao, #tbltitulo{
+            width: 100%;
+            border: 1px solid #000000;
+            margin-bottom: 15px;
+            border-collapse: collapse;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+
+        #tbldados tr td, #tblcomplementar tr td{
+            border: 1px solid #000000;
+            padding: 3px;
+        }
+
+        #tbltitulo tr td{
+            padding: 3px;
+            text-align: center;
+        }
+
+        #tblidentificacao tr td{
+            padding: 3px;
+        }
+
+        p.titulorelatorio{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+    </style>
+
+    <?php
+}
+?>

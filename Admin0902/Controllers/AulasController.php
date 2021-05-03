@@ -4,6 +4,7 @@ namespace Admin0902\Controllers;
 
 use Admin0902\Models\Aulas;
 use Foundation\Controller;
+use Foundation\Pdf\HelperPDF;
 
 class AulasController extends Controller { 
 
@@ -234,5 +235,16 @@ class AulasController extends Controller {
             }
         }
        return  redirect()->route('aulas.imagens', ['id' => $id]);
+    }
+
+    public function criarpdfgeral(){
+        $dados_aulas = $this->aulas->getAllAulas();
+        ob_start();
+        $view = dirname(__FILE__)."/../Views/pdf/aulas.phtml";
+        include_once $view;
+        $html = ob_get_clean();
+        $pdf = new HelperPDF();
+        $arquivo = $pdf->criar($html, "aulas");
+        return $arquivo;
     }
 }
