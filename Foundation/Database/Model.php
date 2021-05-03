@@ -75,13 +75,6 @@ abstract class Model
         return implode(',', $fields);
     }
 
-
-
-
-
-
-
-
     function __toString()
     {
         return $this->getSql();
@@ -268,7 +261,6 @@ abstract class Model
         $sql .= $this->group;
         $sql .= $this->order;
         $sql .= $this->limit;
-
 
         $this->limit = null;
         $this->select = null;
