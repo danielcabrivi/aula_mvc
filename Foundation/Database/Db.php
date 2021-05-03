@@ -70,7 +70,7 @@ class Db extends PDO
         return $this->lastInsertId();
     }
 
-    public function update($table, $data = [], $where)
+    public function update($table, $data = [], $where = "")
     {
         // Ordena
         ksort($data);
