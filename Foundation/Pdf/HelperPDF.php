@@ -2,6 +2,8 @@
 
 namespace Foundation\Pdf;
 
+use Mpdf\Mpdf;
+
 class HelperPDF{
     private $caminho = "";
     function __construct()
@@ -23,9 +25,7 @@ class HelperPDF{
         date_default_timezone_set('America/Sao_Paulo');
         $dtAgora = date("d.m.Y_H.i.s");
 
-        include_once(dirname(__FILE__)."/mpdf/mpdf.php");
-
-        $mpdf = new \mPDF('c','A4','','',20,20,20,20,10,10);
+        $mpdf = new Mpdf();
 
         $mpdf->SetDisplayMode('fullpage');
 
@@ -35,7 +35,6 @@ class HelperPDF{
 
         $nmarquivo ="Nome do arquivo - ".$dtAgora;
         $completo = $this->caminho.$nmarquivo.'.pdf';
-
 
         $mpdf->Output($completo,'F');
         ob_get_clean();
