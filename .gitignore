@@ -4,3 +4,5 @@ public/app/assets/img/conteudo/
 public/app/assets/video/
 public/temp/
 Foundation/Pdf/vendor/
+Foundation/Pdf/composer.json
+Foundation/Pdf/composer.lock
