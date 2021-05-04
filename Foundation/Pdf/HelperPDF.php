@@ -39,6 +39,6 @@ class HelperPDF{
         $mpdf->Output($completo,'F');
         ob_get_clean();
 
-        return "{$nmarquivo}.pdf";
+        return "{$nmarquivo}";
     }
 }

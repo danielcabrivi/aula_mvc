@@ -239,12 +239,25 @@ class AulasController extends Controller {
 
     public function criarpdfgeral(){
         $dados_aulas = $this->aulas->getAllAulas();
+
         ob_start();
         $view = dirname(__FILE__)."/../Views/pdf/aulas.phtml";
         include_once $view;
         $html = ob_get_clean();
+
         $pdf = new HelperPDF();
-        $arquivo = $pdf->criar($html, "aulas");
-        return $arquivo;
+        $nome_arquivo = $pdf->criar($html, "aulas");
+        $arquivo = DIR_BASE . "/public/temp/pdf/". $nome_arquivo . ".pdf";
+
+        $file = fopen($arquivo, "r");
+
+        header('Content-Disposition: attachment; filename=' . $nome_arquivo . '.pdf');
+        header('Content-Type: application/pdf');
+        header('Content-Type: application/download');
+        header('Content-Description: File Transfer');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+
+        return redirect()->route('aulas.index');
     }
 }
