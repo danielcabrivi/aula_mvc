@@ -2,4 +2,5 @@
 config.php
 public/app/assets/img/conteudo/
 public/app/assets/video/
+public/temp/
 Foundation/Pdf/vendor/
