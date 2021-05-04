@@ -257,7 +257,26 @@ class AulasController extends Controller {
         header('Content-Description: File Transfer');
         header('Content-Length: ' . filesize($file));
         readfile($file);
+        exit();
+    }
 
-        return redirect()->route('aulas.index');
+    public function criarexcelgeral(){
+
+        $dados_aulas = $this->aulas->getAllAulas();
+
+        ob_start();
+        $view = dirname(__FILE__)."/../Views/pdf/aulas.phtml";
+        include_once $view;
+        $html = ob_get_clean();
+
+        $arquivo = "MinhaPlanilha.xls";
+
+        header('Content-Disposition: attachment; filename="'.$arquivo.'"');
+        header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
+        header('Content-Type: application/download');
+        header('Content-Description: File Transfer');
+
+        echo $html;
+        exit();
     }
 }
