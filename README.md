@@ -32,5 +32,5 @@
 
 - Alterar as configs do windows para redirecionar para o http://127.0.0.1:
     - Acesse o arquivo: ```C:\Windows\System32\drivers\etc\hosts``` Você pode acessar com bloco de notas mesmo. Pode ser que você tenha que executar como Administrador;
-    - Insira o host e o respecitivo redirecionamento. Ex: ```127.0.0.1       local.mvc.com```
+    - Insira o host e o respecitivo redirecionamento. Ex: ```127.0.0.1       local.projeto.com```
     - Salve o arquivo.
